@@ -1,3 +1,5 @@
 node_modules
 keys
 .vscode
+__pycache__
+backend/__pycache__

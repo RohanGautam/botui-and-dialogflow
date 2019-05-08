@@ -1,32 +1,44 @@
 import uuid
-import dialogflow_v2 as dialogflow
+# import dialogflow_v2 as dialogflow
+from backend.connect_dialogflow import detect_intent_text
+from flask import Flask
+from flask_restful import Api, Resource, reqparse
 
-def detect_intent_texts(project_id, session_id, texts, language_code):
-    """Returns the result of detect intent with texts as inputs.
+app=Flask(__name__)
+api=Api(app)
 
-    Using the same `session_id` between requests allows continuation
-    of the conversation."""
+projectId='testaction-d6d53'
 
-    session_client = dialogflow.SessionsClient.from_service_account_file('keys/testaction-service-key.json')
+users = [
+    {
+        "request": "rohan gautam",
+        "age": 42,
+        "occupation":"memeLord"
+    },
+    {
+        "request": "jSON",
+        "age": 13,
+        "occupation":"Jason's autistic sibling"
+    },
+    {
+        "request": "Jass",
+        "age": 48334,
+        "occupation":"oldest person ever"
+    }
+]
 
-    session = session_client.session_path(project_id, session_id)
-    print('Session path: {}\n'.format(session))
+class User(Resource):
+    def get(self,request):
+        '''get user'''
+        print(f'GOT request= {request}, processing')
+        return detect_intent_text(projectId, uuid.uuid4(),request,'en-US').query_result.fulfillment_text, 200
+        # for user in users:
+        #     if(request==user["request"]):
+        #         return user,200 # this is a tuple
+        # return "user not found", 404
 
-    for text in texts:
-        text_input = dialogflow.types.TextInput(
-            text=text, language_code=language_code)
+api.add_resource(User, "/request/<string:request>")
+app.run(debug=True)
 
-        query_input = dialogflow.types.QueryInput(text=text_input)
-
-        response = session_client.detect_intent(
-            session=session, query_input=query_input)
-
-        print('=' * 20)
-        print('Query text: {}'.format(response.query_result.query_text))
-        print('Detected intent: {} (confidence: {})\n'.format(
-            response.query_result.intent.display_name,
-            response.query_result.intent_detection_confidence))
-        print('Fulfillment text: {}\n'.format(
-            response.query_result.fulfillment_text))
-
-detect_intent_texts('testaction-d6d53',uuid.uuid4(),['Hello','camp deadline'], 'en-US')
+# example call:
+# http://127.0.0.1:5000/request/camp deadline
