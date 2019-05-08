@@ -19,7 +19,7 @@ Google describes `Agents` as *NLU (Natural Language Understanding) modules*. The
 3. Dialogflow will automatically setup a `Default Welcome Intent`, which you can try from the test console.
 
 ### 2. Create a service account and download the service key json file
-<img src="images/save_json.png" />
+![](https://github.com/jschnurr/botkit-middleware-dialogflow/blob/master/images/save_json.png?raw=true)
 
 In order for your Bot to access your Dialogflow Agent, you will need to create a `service account`. A [Service account](https://cloud.google.com/compute/docs/access/service-accounts) is an identity that allows your bot to access the Dialogflow services on your behalf. Once configured, you can download the private key for your service account as a JSON file.
 
