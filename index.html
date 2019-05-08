@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BotUiTest</title>
+    <!-- adding botui stuff -->
+    <link rel="stylesheet" href="./node_modules/botui/build/botui.min.css" />
+    <link rel="stylesheet" href="./node_modules/botui/build/botui-theme-default.css" />
+</head>
+
+<body>
+    <div class="botui-app-container" id="botui-app">
+        <bot-ui></bot-ui>
+    </div>
+    <!-- loading vue[not local], botui's own stuff, and index.js -->
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="./node_modules/botui/build/botui.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
