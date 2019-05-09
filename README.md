@@ -9,6 +9,9 @@ example api call `http://127.0.0.1:5000/request/camp deadline`
 # Basic flow, diagramatically
 ![flow](https://user-images.githubusercontent.com/17317792/57446817-2ac23480-7288-11e9-89d5-febbe1b43d09.png)
 
+## directory structure
+![directory](https://user-images.githubusercontent.com/17317792/57446891-56451f00-7288-11e9-90d6-5aa6fd17d5d1.png)
+
 # Getting keys for dialogflow agent:
 ### 1. Setup an Agent in Dialogflow
 ![default_intent](https://github.com/jschnurr/botkit-middleware-dialogflow/blob/master/images/default_intent.png?raw=true)
