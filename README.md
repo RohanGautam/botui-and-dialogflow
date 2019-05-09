@@ -6,7 +6,8 @@ example api call `http://127.0.0.1:5000/request/camp deadline`
 
 
 
-
+# Basic flow, diagramatically
+![flow](https://user-images.githubusercontent.com/17317792/57446817-2ac23480-7288-11e9-89d5-febbe1b43d09.png)
 
 # Getting keys for dialogflow agent:
 ### 1. Setup an Agent in Dialogflow
