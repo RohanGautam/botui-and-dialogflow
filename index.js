@@ -12,51 +12,29 @@ const callAPI = async (requestStr) => {
 
 botui.message.bot({ // show first message
     delay: 200,
-    content: 'hello'
-}).then(() => {
-    return botui.action.text({
+    content: 'Enter your query'
+});
+
+function init() {
+    botui.action.text({
         action: {
             placeholder: "Your query"
         }
-    });
-}).then(async (res) => {
-
-    botui.message.add({
-        loading: true
-    }).then(async (index) => {
-        jsonResult = await callAPI(res.value);
-        console.log('here it\'s', res.value);
-        return botui.message.update(index, {
-            loading: false,
-            content: `${jsonResult['response']}`
-        });
-    }).then(() => {///////////////////////////////////////////////////////////////
-        return botui.message.bot({ // second one
-            delay: 1000, // wait 1 sec.
-            content: 'how are you?'
-        })
-    }).then(() => {
-        return botui.action.button({ // let user do something
-            delay: 1000,
-            action: [
-                {
-                    text: 'Good',
-                    value: 'good'
-                },
-                {
-                    text: 'Really Good',
-                    value: 'really_good'
-                }
-            ]
-        })
-    }).then(res => {
-        return botui.message.bot({
-            delay: 1000,
-            content: `You are feeling ${res.text}!`
-        })
+    }).then(async (res) => {
+        botui.message.add({
+            loading: true
+        }).then(async (index) => {
+            jsonResult = await callAPI(res.value);
+            console.log('here it\'s', res.value);
+            return botui.message.update(index, {
+                loading: false,
+                content: `${jsonResult['response']}`
+            });
+        }).then(init); //ask again, and keep it in loop
     })
-})
+}
 
+init()
 /*
 .then(() => {
     return botui.message.bot({ // second one
